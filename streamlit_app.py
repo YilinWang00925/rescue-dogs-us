@@ -68,7 +68,7 @@ state_map = st.altair_chart(chloropleth, use_container_width=True, on_select="re
 
 # --- Graph 2: Bar Chart - Top 10 breeds in selected state ---
 ## Extract selected FIPS from query params
-selected_fips = st.query_params.get('_Select_id', None)
+selected_fips = state_map.selection.Select[0]['id'] if len(state_map.selection.Select) > 0 else None
 
 ## Convert FIPS to state abbreviation
 fips_state = {v: k for k, v in state_fips.items()}
@@ -94,8 +94,8 @@ if selected_state:
         tooltip=[alt.Tooltip("breed:N"), alt.Tooltip("count:Q")]
     ).properties(
         title=f"Top 10 Dog Breeds in {selected_state}",
-        width=400,
-        height=150
+        width=600,
+        height=400
     )
 
     st.altair_chart(bar_chart, use_container_width=True)
@@ -161,7 +161,7 @@ if "df" in st.session_state:
         color=alt.Color("count:Q", scale=alt.Scale(scheme='greens'), title="Count"),
         tooltip=["age:N", "size:N", "count:Q"]
     ).properties(
-        width=600,
+        width=800,
         height=400
     )
 
