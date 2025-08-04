@@ -123,7 +123,7 @@ if "df" in st.session_state:
     )
 
     st.markdown("## 🐕 What type of dog are you looking for?")
-    st.markdown("### Choose the breed you are interested in")
+    st.markdown("### Select a breed you are interested in and use the heatmap to guide your next step")
 
     state_label = selected_state if selected_state else "None (National)"
     st.markdown(f"🗺️ Filtering by state: **{state_label}**")
